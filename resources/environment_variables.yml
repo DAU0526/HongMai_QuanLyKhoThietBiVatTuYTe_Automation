@@ -1,0 +1,36 @@
+# ============================================================
+# environment_variables.yml
+# Cấu hình biến môi trường cho toàn bộ test suite
+# ============================================================
+
+# --- URL gốc ---
+# BASE_URL: "http://localhost:5173"
+# LOGIN_URL: "http://localhost:5173/login"
+# REGISTER_URL: "http://localhost:5173/register"
+
+BASE_URL: "http://localhost:8080"
+LOGIN_URL: "http://localhost:8080/login"
+REGISTER_URL: "http://localhost:8080/register"
+
+# --- Trình duyệt ---
+BROWSER: "chrome"
+
+# --- Tài khoản test từng vai trò ---
+ADMIN_EMAIL:        "admin@benhvien.vn"
+ADMIN_PASSWORD:     "123456"
+
+NV_KHO_EMAIL:       "kho@benhvien.vn"
+NV_KHO_PASSWORD:    "123456"
+
+QL_KHO_EMAIL:       "qlkho@benhvien.vn"
+QL_KHO_PASSWORD:    "123456"
+
+TRUONG_KHOA_EMAIL:    "khoanoi@benhvien.vn"
+TRUONG_KHOA_PASSWORD: "123456"
+
+QL_KHOA_EMAIL:      "qlkhoa@benhvien.vn"
+QL_KHOA_PASSWORD:   "123456"
+
+# --- Dữ liệu test mẫu ---
+TEST_THIET_BI:  "Kim tiêm"
+TEST_KHOA:      "Khoa Nội"

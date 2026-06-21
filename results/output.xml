@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0.1 (Python 3.12.6 on win32)" generated="2026-06-21T17:25:55.118345" rpa="false" schemaversion="5">
+<suite id="s1" name="RequestsTests" source="D:\MONHOC\THUC_TAP_TOT_NGHIEP\MedEquip3\MedEquip\robot-tests\tests\RequestsTests.robot">
+<kw name="Khởi Tạo Suite" type="SETUP">
+<kw name="Mở Trình Duyệt" owner="common_keywords">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<arg>${LOGIN_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.252493" elapsed="0.000554"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.253047" elapsed="0.000000"/>
+</kw>
+<kw name="Set Selenium Implicit Wait" owner="SeleniumLibrary">
+<arg>2s</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.253047" elapsed="0.000000"/>
+</kw>
+<kw name="Set Selenium Timeout" owner="SeleniumLibrary">
+<arg>10s</arg>
+<doc>Sets the timeout that is used by various keywords.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.253047" elapsed="0.000000"/>
+</kw>
+<doc>Mở Chrome, vào trang chủ, set timeout mặc định</doc>
+<status status="PASS" start="2026-06-21T17:25:55.252493" elapsed="0.000554"/>
+</kw>
+<kw name="Đăng Nhập Admin" owner="common_keywords">
+<kw name="Go To" owner="SeleniumLibrary">
+<arg>${LOGIN_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.253047" elapsed="0.000000"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>id:email</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.253047" elapsed="0.000000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>id:email</arg>
+<arg>${ADMIN_EMAIL}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.253047" elapsed="0.000000"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<arg>id:password</arg>
+<arg>${ADMIN_PASSWORD}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.253047" elapsed="0.000000"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<arg>xpath://button[@type='submit']</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.253047" elapsed="0.000000"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath://button[.//span[text()='Tổng quan']]</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.253047" elapsed="0.000000"/>
+</kw>
+<doc>Đăng nhập bằng tài khoản Admin</doc>
+<status status="PASS" start="2026-06-21T17:25:55.253047" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.251988" elapsed="0.001059"/>
+</kw>
+<test id="s1-t1" name="TC-REQ-01 Trang yêu cầu tải thành công và hiển thị dữ liệu" line="20">
+<kw name="Mở Trang Requests" owner="RequestsPage">
+<kw name="Go To" owner="SeleniumLibrary">
+<arg>${REQUESTS_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.254739" elapsed="0.000000"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.254739" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.254739" elapsed="0.000000"/>
+</kw>
+<kw name="Đếm Số Yêu Cầu" owner="RequestsPage">
+<kw name="Get Element Count" owner="SeleniumLibrary">
+<var>${count}</var>
+<arg>${TBL_ROWS}</arg>
+<doc>Returns the number of elements matching ``locator``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.255244" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${count}</value>
+<status status="PASS" start="2026-06-21T17:25:55.255244" elapsed="0.000000"/>
+</return>
+<var>${count}</var>
+<status status="PASS" start="2026-06-21T17:25:55.254739" elapsed="0.000505"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>Tổng số yêu cầu: ${count}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.255244" elapsed="0.000000"/>
+</kw>
+<kw name="Chụp Ảnh Khi Lỗi" owner="common_keywords" type="TEARDOWN">
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.255244" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.255244" elapsed="0.000000"/>
+</kw>
+<doc>Mở /requests → trang tải thành công, không lỗi</doc>
+<tag>requests</tag>
+<tag>smoke</tag>
+<status status="PASS" start="2026-06-21T17:25:55.253047" elapsed="0.002197"/>
+</test>
+<test id="s1-t2" name="TC-REQ-02 Tìm kiếm yêu cầu theo mã phiếu" line="27">
+<kw name="Mở Trang Requests" owner="RequestsPage">
+<kw name="Go To" owner="SeleniumLibrary">
+<arg>${REQUESTS_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.256256" elapsed="0.000000"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.256256" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.256256" elapsed="0.000000"/>
+</kw>
+<kw name="Tìm Kiếm Yêu Cầu" owner="RequestsPage">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${INPUT_SEARCH}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.256813" elapsed="0.000000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${INPUT_SEARCH}</arg>
+<arg>${tuKhoa}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.256813" elapsed="0.000000"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.256813" elapsed="0.000000"/>
+</kw>
+<arg>YC</arg>
+<status status="PASS" start="2026-06-21T17:25:55.256256" elapsed="0.000557"/>
+</kw>
+<kw name="Đếm Số Yêu Cầu" owner="RequestsPage">
+<kw name="Get Element Count" owner="SeleniumLibrary">
+<var>${count}</var>
+<arg>${TBL_ROWS}</arg>
+<doc>Returns the number of elements matching ``locator``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.256813" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${count}</value>
+<status status="PASS" start="2026-06-21T17:25:55.256813" elapsed="0.000000"/>
+</return>
+<var>${count}</var>
+<status status="PASS" start="2026-06-21T17:25:55.256813" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>Kết quả tìm kiếm: ${count}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.256813" elapsed="0.000000"/>
+</kw>
+<kw name="Chụp Ảnh Khi Lỗi" owner="common_keywords" type="TEARDOWN">
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.256813" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.256813" elapsed="0.000000"/>
+</kw>
+<doc>Nhập mã phiếu → danh sách lọc đúng</doc>
+<tag>happy-path</tag>
+<tag>requests</tag>
+<tag>search</tag>
+<status status="PASS" start="2026-06-21T17:25:55.255244" elapsed="0.001569"/>
+</test>
+<test id="s1-t3" name="TC-REQ-03 Tìm kiếm không có kết quả trả về bảng rỗng" line="35">
+<kw name="Mở Trang Requests" owner="RequestsPage">
+<kw name="Go To" owner="SeleniumLibrary">
+<arg>${REQUESTS_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.258456" elapsed="0.000000"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.258456" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.258456" elapsed="0.000000"/>
+</kw>
+<kw name="Tìm Kiếm Yêu Cầu" owner="RequestsPage">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${INPUT_SEARCH}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.258456" elapsed="0.000000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${INPUT_SEARCH}</arg>
+<arg>${tuKhoa}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.258456" elapsed="0.000000"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.259007" elapsed="0.000000"/>
+</kw>
+<arg>XYZKHONGTONTAI9999</arg>
+<status status="PASS" start="2026-06-21T17:25:55.258456" elapsed="0.000551"/>
+</kw>
+<kw name="Đếm Số Yêu Cầu" owner="RequestsPage">
+<kw name="Get Element Count" owner="SeleniumLibrary">
+<var>${count}</var>
+<arg>${TBL_ROWS}</arg>
+<doc>Returns the number of elements matching ``locator``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.259007" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${count}</value>
+<status status="PASS" start="2026-06-21T17:25:55.259007" elapsed="0.000000"/>
+</return>
+<var>${count}</var>
+<status status="PASS" start="2026-06-21T17:25:55.259007" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${count}</arg>
+<arg>0</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.259007" elapsed="0.000000"/>
+</kw>
+<kw name="Chụp Ảnh Khi Lỗi" owner="common_keywords" type="TEARDOWN">
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.259007" elapsed="0.000627"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.259007" elapsed="0.000627"/>
+</kw>
+<doc>Từ khoá không tồn tại → 0 dòng kết quả</doc>
+<tag>negative</tag>
+<tag>requests</tag>
+<tag>search</tag>
+<status status="PASS" start="2026-06-21T17:25:55.257952" elapsed="0.001682"/>
+</test>
+<test id="s1-t4" name="TC-REQ-04 Mở form tạo yêu cầu và đóng lại" line="43">
+<kw name="Mở Trang Requests" owner="RequestsPage">
+<kw name="Go To" owner="SeleniumLibrary">
+<arg>${REQUESTS_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.260258" elapsed="0.000000"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.260258" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.260258" elapsed="0.000000"/>
+</kw>
+<kw name="Mở Form Tạo Yêu Cầu" owner="RequestsPage">
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${BTN_TAO_YEU_CAU}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.260258" elapsed="0.000000"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${DLG_CREATE}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.260258" elapsed="0.000790"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.260258" elapsed="0.000790"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<arg>${DLG_CREATE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.261048" elapsed="0.000000"/>
+</kw>
+<kw name="Đóng Form Yêu Cầu" owner="RequestsPage">
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${BTN_CANCEL_DLG}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.261401" elapsed="0.000000"/>
+</kw>
+<kw name="Wait Until Element Is Not Visible" owner="SeleniumLibrary">
+<arg>${DLG_CREATE}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is not visible.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.261401" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.261048" elapsed="0.000353"/>
+</kw>
+<kw name="Element Should Not Be Visible" owner="SeleniumLibrary">
+<arg>${DLG_CREATE}</arg>
+<doc>Verifies that the element identified by ``locator`` is NOT visible.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.261401" elapsed="0.000000"/>
+</kw>
+<kw name="Chụp Ảnh Khi Lỗi" owner="common_keywords" type="TEARDOWN">
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.261923" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.261401" elapsed="0.000522"/>
+</kw>
+<doc>Nhấn nút tạo yêu cầu → dialog hiện → nhấn Hủy → đóng</doc>
+<tag>requests</tag>
+<tag>ui</tag>
+<status status="PASS" start="2026-06-21T17:25:55.259634" elapsed="0.002289"/>
+</test>
+<test id="s1-t5" name="TC-REQ-08 Admin xóa yêu cầu khỏi hệ thống" line="88">
+<kw name="Mở Trang Requests" owner="RequestsPage">
+<kw name="Go To" owner="SeleniumLibrary">
+<arg>${REQUESTS_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.262575" elapsed="0.000000"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.262575" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.262575" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<arg>${BTN_DELETE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.263098" elapsed="0.000000"/>
+</kw>
+<var>${visible}</var>
+<arg>Element Should Be Visible</arg>
+<arg>${BTN_DELETE}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.263098" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="${visible}">
+<kw name="Xóa Yêu Cầu Đầu Tiên" owner="RequestsPage">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${BTN_DELETE}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.263098" elapsed="0.000517"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${BTN_DELETE}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.263615" elapsed="0.000000"/>
+</kw>
+<kw name="Chờ Toast Thành Công" owner="common_keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath://div[@role='status' or contains(@class,'toast')][contains(.,'Thành công')]</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.263615" elapsed="0.000567"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.263615" elapsed="0.000567"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.263098" elapsed="0.001084"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.263098" elapsed="0.001084"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" owner="BuiltIn">
+<arg>Không có nút Xóa hiển thị</arg>
+<arg>level=WARN</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.264182" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.264182" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2026-06-21T17:25:55.263098" elapsed="0.001084"/>
+</if>
+<kw name="Chụp Ảnh Khi Lỗi" owner="common_keywords" type="TEARDOWN">
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.264762" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.264182" elapsed="0.000580"/>
+</kw>
+<doc>Admin nhấn Xóa → yêu cầu bị xóa → toast thành công</doc>
+<tag>admin</tag>
+<tag>delete</tag>
+<tag>requests</tag>
+<status status="PASS" start="2026-06-21T17:25:55.261923" elapsed="0.002839"/>
+</test>
+<test id="s1-t6" name="TC-REQ-09 Trạng thái yêu cầu mới tạo là Chờ duyệt" line="100">
+<kw name="Mở Trang Requests" owner="RequestsPage">
+<kw name="Go To" owner="SeleniumLibrary">
+<arg>${REQUESTS_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.265385" elapsed="0.000000"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.265385" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.265385" elapsed="0.000000"/>
+</kw>
+<kw name="Đếm Số Yêu Cầu" owner="RequestsPage">
+<kw name="Get Element Count" owner="SeleniumLibrary">
+<var>${count}</var>
+<arg>${TBL_ROWS}</arg>
+<doc>Returns the number of elements matching ``locator``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.265385" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${count}</value>
+<status status="PASS" start="2026-06-21T17:25:55.265385" elapsed="0.000627"/>
+</return>
+<var>${count}</var>
+<status status="PASS" start="2026-06-21T17:25:55.265385" elapsed="0.000627"/>
+</kw>
+<if>
+<branch type="IF" condition="${count} &gt; 0">
+<kw name="Lấy Trạng Thái Yêu Cầu Đầu Tiên" owner="RequestsPage">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${LBL_FIRST_STATUS}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.266012" elapsed="0.000000"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<var>${text}</var>
+<arg>${LBL_FIRST_STATUS}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.266012" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${text}</value>
+<status status="PASS" start="2026-06-21T17:25:55.266012" elapsed="0.000000"/>
+</return>
+<var>${status}</var>
+<status status="PASS" start="2026-06-21T17:25:55.266012" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>Trạng thái yêu cầu đầu tiên: ${status}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.266012" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.266012" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" owner="BuiltIn">
+<arg>Không có yêu cầu nào để kiểm tra</arg>
+<arg>level=WARN</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.266012" elapsed="0.000626"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.266012" elapsed="0.000626"/>
+</branch>
+<status status="PASS" start="2026-06-21T17:25:55.266012" elapsed="0.000626"/>
+</if>
+<kw name="Chụp Ảnh Khi Lỗi" owner="common_keywords" type="TEARDOWN">
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.266638" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.266638" elapsed="0.000000"/>
+</kw>
+<doc>Yêu cầu vừa tạo phải hiển thị trạng thái "Chờ duyệt"</doc>
+<tag>happy-path</tag>
+<tag>requests</tag>
+<tag>validation</tag>
+<status status="PASS" start="2026-06-21T17:25:55.264762" elapsed="0.001876"/>
+</test>
+<kw name="Đóng Trình Duyệt" owner="common_keywords" type="TEARDOWN">
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="NOT RUN" start="2026-06-21T17:25:55.267258" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-21T17:25:55.267258" elapsed="0.000000"/>
+</kw>
+<doc>Test Suite: Yêu cầu thiết bị (Requests)
+Kiểm tra workflow: tạo → duyệt khoa → duyệt quản lý → hủy → xóa</doc>
+<status status="PASS" start="2026-06-21T17:25:55.118345" elapsed="0.148913"/>
+</suite>
+<statistics>
+<total>
+<stat pass="6" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">admin</stat>
+<stat pass="1" fail="0" skip="0">delete</stat>
+<stat pass="2" fail="0" skip="0">happy-path</stat>
+<stat pass="1" fail="0" skip="0">negative</stat>
+<stat pass="6" fail="0" skip="0">requests</stat>
+<stat pass="2" fail="0" skip="0">search</stat>
+<stat pass="1" fail="0" skip="0">smoke</stat>
+<stat pass="1" fail="0" skip="0">ui</stat>
+<stat pass="1" fail="0" skip="0">validation</stat>
+</tag>
+<suite>
+<stat pass="6" fail="0" skip="0" id="s1" name="RequestsTests">RequestsTests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
