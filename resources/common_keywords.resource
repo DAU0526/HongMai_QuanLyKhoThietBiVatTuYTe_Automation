@@ -1,5 +1,6 @@
 *** Settings ***
 Library     SeleniumLibrary
+Library     Collections
 Variables   environment_variables.yml
 
 *** Keywords ***
@@ -8,8 +9,20 @@ Variables   environment_variables.yml
 # ============================================================
 
 Mở Trình Duyệt
-    [Documentation]    Mở Chrome, vào trang chủ, set timeout mặc định
-    Open Browser    ${LOGIN_URL}    ${BROWSER}
+    [Documentation]    Mở Chrome với ChromeOptions đầy đủ, set timeout mặc định
+    ${options}=    Evaluate
+    ...    __import__('selenium.webdriver', fromlist=['ChromeOptions']).ChromeOptions()
+    Call Method    ${options}    add_argument    --disable-notifications
+    Call Method    ${options}    add_argument    --disable-popup-blocking
+    Call Method    ${options}    add_argument    --disable-infobars
+    Call Method    ${options}    add_argument    --start-maximized
+    Call Method    ${options}    add_argument    --no-sandbox
+    Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    Call Method    ${options}    add_experimental_option    excludeSwitches    ${{ ["enable-automation"] }}
+    Call Method    ${options}    add_experimental_option    useAutomationExtension    ${False}
+    # Bỏ comment dòng dưới để chạy headless (CI/CD):
+    # Call Method    ${options}    add_argument    --headless=new
+    Open Browser    ${LOGIN_URL}    ${BROWSER}    options=${options}
     Maximize Browser Window
     Set Selenium Implicit Wait    2s
     Set Selenium Timeout    10s
@@ -63,8 +76,12 @@ Mở Trình Duyệt
 
 Đăng Xuất
     [Documentation]    Nhấn nút Đăng xuất, chờ về trang login
+    Wait Until Element Is Visible
+    ...    xpath://button[.//span[text()='Đăng xuất'] or (not(span) and .//svg)]
+    ...    timeout=5s
     Click Element    xpath://button[.//span[text()='Đăng xuất']]
-    Wait Until Element Is Visible    id:email    timeout=10s
+    Wait Until Keyword Succeeds    15s    0.5s    Location Should Contain    /login
+    Wait Until Element Is Visible    id:email    timeout=15s
 
 # ============================================================
 # ĐIỀU HƯỚNG SIDEBAR
@@ -73,7 +90,9 @@ Mở Trình Duyệt
 Vào Trang Qua Sidebar
     [Arguments]    ${ten_menu}
     Click Element    xpath://button[.//span[text()='${ten_menu}']]
-    Sleep    1s
+    Wait Until Element Is Visible
+    ...    xpath://button[.//span[text()='${ten_menu}']][contains(@class,'active') or contains(@class,'bg-')]
+    ...    timeout=5s
 
 # ============================================================
 # HELPERS
@@ -102,3 +121,41 @@ Element Hiển Thị
 Element Ẩn
     [Arguments]    ${locator}
     Wait Until Element Is Not Visible    ${locator}    timeout=10s
+
+# ============================================================
+# JAVASCRIPT UTILITIES
+# ============================================================
+
+Click Bằng Javascript
+    [Documentation]    Dùng JS click khi Selenium bị chặn do overlay/animation
+    [Arguments]    ${locator}
+    ${element}=    Get WebElement    ${locator}
+    Execute Javascript    arguments[0].click();    ARGUMENTS    ${element}
+
+Xóa Và Nhập Text Bằng Javascript
+    [Documentation]    Dùng JS xóa value rồi dùng Selenium nhập lại — an toàn với React controlled input
+    [Arguments]    ${locator}    ${value}
+    ${element}=    Get WebElement    ${locator}
+    Execute Javascript    arguments[0].value = '';    ARGUMENTS    ${element}
+    Execute Javascript
+    ...    arguments[0].dispatchEvent(new Event('input', {bubbles: true}));
+    ...    ARGUMENTS    ${element}
+    Input Text    ${locator}    ${value}
+
+Cuộn Đến Element
+    [Documentation]    Scroll element vào vùng nhìn thấy trước khi tương tác
+    [Arguments]    ${locator}
+    ${element}=    Get WebElement    ${locator}
+    Execute Javascript    arguments[0].scrollIntoView({block: 'center'});    ARGUMENTS    ${element}
+    Wait Until Element Is Visible    ${locator}    timeout=5s
+
+Chờ Trang Tải Xong
+    [Documentation]    Chờ document.readyState = complete (sau navigate)
+    Wait Until Keyword Succeeds    10s    0.5s
+    ...    Execute Javascript    return document.readyState === 'complete'
+
+Chờ Không Còn Loading
+    [Documentation]    Chờ spinner/overlay ẩn đi — tránh click nhầm lúc trang đang load
+    [Arguments]    ${spinner_locator}=xpath://*[contains(@class,'loading') or contains(@class,'spinner')]
+    Run Keyword And Ignore Error
+    ...    Wait Until Element Is Not Visible    ${spinner_locator}    timeout=5s

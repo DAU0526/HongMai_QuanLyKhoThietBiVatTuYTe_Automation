@@ -43,14 +43,15 @@ Login Thất Bại
     Nhập Email       ${email}
     Nhập Mật Khẩu    ${password}
     Nhấn Đăng Nhập
-    Wait Until Element Is Visible    ${MSG_ERROR}    timeout=5s
+    Wait Until Element Is Visible    ${MSG_ERROR}    timeout=10s
 
 Kiểm Tra Đang Ở Dashboard
     Element Should Be Visible    ${LBL_DASHBOARD}
 
 Logout
     Click Element    ${BTN_LOGOUT}
-    Wait Until Element Is Visible    ${INPUT_EMAIL}    timeout=10s
+    Wait Until Keyword Succeeds    15s    0.5s    Location Should Contain    /login
+    Wait Until Element Is Visible    ${INPUT_EMAIL}    timeout=15s
 
 Đến Trang Đăng Ký
     Click Element    ${BTN_REGISTER}

@@ -6,13 +6,13 @@ Variables   ../locators/RequestsPageLocators.py
 *** Keywords ***
 Mở Trang Requests
     Go To    ${REQUESTS_URL}
-    Sleep    1s
+    Wait Until Element Is Visible    ${INPUT_SEARCH}    timeout=10s
 
 Tìm Kiếm Yêu Cầu
     [Arguments]    ${tuKhoa}
     Clear Element Text    ${INPUT_SEARCH}
     Input Text    ${INPUT_SEARCH}    ${tuKhoa}
-    Sleep    0.5s
+    Wait Until Element Is Visible    ${TBL_ROWS}    timeout=5s
 
 Đếm Số Yêu Cầu
     ${count}=    Get Element Count    ${TBL_ROWS}

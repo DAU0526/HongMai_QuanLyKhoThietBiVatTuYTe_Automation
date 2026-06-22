@@ -122,8 +122,7 @@ TC-REG-11 Link "Đăng nhập ngay" dẫn về trang login
     [Tags]    register    navigation
     Mở Trang Register
     Click Element    ${BTN_GO_LOGIN}
-    Sleep    1s
-    Location Should Contain    /login
+    Wait Until Keyword Succeeds    5s    0.5s    Location Should Contain    /login
 
 TC-REG-12 Sau đăng ký thành công nhấn "Quay lại Đăng nhập" về trang login
     [Documentation]    Màn hình thành công → nhấn Quay lại → về /login
@@ -137,5 +136,4 @@ TC-REG-12 Sau đăng ký thành công nhấn "Quay lại Đăng nhập" về tra
     ...    ${OPT_QL_KHOA}
     Kiểm Tra Màn Hình Thành Công
     Click Element    ${BTN_BACK_LOGIN}
-    Sleep    1s
-    Location Should Contain    /login
+    Wait Until Keyword Succeeds    5s    0.5s    Location Should Contain    /login

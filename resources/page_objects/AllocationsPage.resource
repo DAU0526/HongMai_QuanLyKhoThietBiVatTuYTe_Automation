@@ -6,25 +6,25 @@ Variables   ../locators/AllocationsPageLocators.py
 *** Keywords ***
 Mở Trang Allocations
     Go To    ${ALLOCATIONS_URL}
-    Sleep    1s
+    Wait Until Element Is Visible    ${TAB_LICH_SU}    timeout=10s
 
 Chuyển Tab Lịch Sử Cấp Phát
     Click Element    ${TAB_LICH_SU}
-    Sleep    0.5s
+    Wait Until Element Is Visible    ${TBL_ROWS}    timeout=5s
 
 Chuyển Tab Chờ Xử Lý
     Click Element    ${TAB_CHO_XU_LY}
-    Sleep    0.5s
+    Wait Until Element Is Visible    ${LBL_PENDING_BADGE}    timeout=5s
 
 Chuyển Tab Yêu Cầu Của Tôi
     Click Element    ${TAB_YEU_CAU_TOI}
-    Sleep    0.5s
+    Wait Until Element Is Visible    ${INPUT_SEARCH}    timeout=5s
 
 Tìm Kiếm Phiếu
     [Arguments]    ${tuKhoa}
     Clear Element Text    ${INPUT_SEARCH}
     Input Text    ${INPUT_SEARCH}    ${tuKhoa}
-    Sleep    0.5s
+    Wait Until Element Is Visible    ${ELM_PENDING_CARD}    timeout=5s
 
 Đếm Phiếu Chờ Xử Lý
     ${count}=    Get Element Count    ${ELM_PENDING_CARD}

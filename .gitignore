@@ -1,0 +1,18 @@
+# ============================================================
+# Robot Framework – kết quả test (tự sinh khi chạy)
+# ============================================================
+
+# Báo cáo và log
+robot-tests/results/report.html
+robot-tests/results/log.html
+robot-tests/results/output.xml
+robot-tests/results/debug.log
+
+
+
+robot-tests/results/selenium-screenshot-*.png
+
+# Python cache
+robot-tests/**/__pycache__/
+robot-tests/**/*.pyc
+robot-tests/**/*.pyo

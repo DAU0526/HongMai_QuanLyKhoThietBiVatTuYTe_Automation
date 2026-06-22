@@ -10,28 +10,30 @@ Mở Trang Inventory
 
 Chuyển Tab Tồn Kho
     Click Element    ${TAB_TON_KHO}
-    Sleep    0.5s
+    Wait Until Element Is Visible    ${INPUT_SEARCH}    timeout=5s
 
 Chuyển Tab Nhập Kho
     Click Element    ${TAB_NHAP_KHO}
-    Sleep    0.5s
+    Wait Until Element Is Visible    ${INPUT_SEARCH_PHIEU}    timeout=5s
 
 Chuyển Tab Xuất Kho
     Click Element    ${TAB_XUAT_KHO}
-    Sleep    0.5s
+    Wait Until Element Is Visible    ${INPUT_SEARCH_PHIEU}    timeout=5s
 
 Tìm Kiếm Thiết Bị
     [Arguments]    ${tuKhoa}
     Clear Element Text    ${INPUT_SEARCH}
     Input Text    ${INPUT_SEARCH}    ${tuKhoa}
-    Sleep    0.5s
+    Wait Until Element Is Not Visible
+    ...    xpath://*[contains(@class,'loading') or contains(@class,'spinner')]
+    ...    timeout=3s
 
 Lọc Theo Trạng Thái
     [Arguments]    ${optLocator}
     Click Element    ${DDL_FILTER}
     Wait Until Element Is Visible    ${optLocator}    timeout=5s
     Click Element    ${optLocator}
-    Sleep    0.5s
+    Wait Until Element Is Not Visible    ${optLocator}    timeout=3s
 
 Đếm Số Dòng Bảng
     ${count}=    Get Element Count    ${TBL_ROWS}

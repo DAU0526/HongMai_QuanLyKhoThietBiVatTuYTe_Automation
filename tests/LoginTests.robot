@@ -97,7 +97,7 @@ TC-LOGIN-11 Đã đăng nhập truy cập /login sẽ redirect về trang chủ
     [Tags]    login    redirect
     Login Thành Công    ${ADMIN_EMAIL}    ${ADMIN_PASSWORD}
     Go To    ${LOGIN_URL}
-    Sleep    1s
+    Wait Until Keyword Succeeds    5s    0.5s    Location Should Not Contain    /login
     ${url}=    Get Location
     Should Not Contain    ${url}    /login
     Logout
@@ -114,5 +114,4 @@ TC-LOGIN-13 Có link chuyển sang trang đăng ký
     [Tags]    login    navigation
     Mở Trang Login
     Click Element    ${BTN_REGISTER}
-    Sleep    1s
-    Location Should Contain    /register
+    Wait Until Keyword Succeeds    5s    0.5s    Location Should Contain    /register

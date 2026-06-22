@@ -8,13 +8,13 @@ Tìm Kiếm Theo Mã Phiếu
     [Arguments]    ${maPhieu}
     Clear Element Text    ${INPUT_SEARCH_PHIEU}
     Input Text    ${INPUT_SEARCH_PHIEU}    ${maPhieu}
-    Sleep    0.5s
+    Wait Until Element Is Visible    ${ELM_PHIEU_LIST}    timeout=5s
 
 Tìm Kiếm Theo Thiết Bị
     [Arguments]    ${tuKhoa}
     Clear Element Text    ${INPUT_SEARCH_TB}
     Input Text    ${INPUT_SEARCH_TB}    ${tuKhoa}
-    Sleep    0.5s
+    Wait Until Element Is Visible    ${ELM_PHIEU_LIST}    timeout=5s
 
 Đếm Số Phiếu
     ${count}=    Get Element Count    ${ELM_PHIEU_LIST}
@@ -22,7 +22,7 @@ Tìm Kiếm Theo Thiết Bị
 
 Mở Rộng Phiếu Đầu Tiên
     Click Element    ${BTN_EXPAND_FIRST}
-    Sleep    0.5s
+    Wait Until Element Is Visible    ${LBL_STATUS}    timeout=5s
 
 Lấy Trạng Thái Phiếu Đầu Tiên
     Wait Until Element Is Visible    ${LBL_STATUS}    timeout=5s
